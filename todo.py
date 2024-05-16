@@ -1,12 +1,26 @@
+import json
 import sys
 
 # シンプルなToDoリストを管理するクラス
 class ToDoList:
-    def __init__(self):
-        self.tasks = []
+    def __init__(self, filename="tasks.json"):
+        self.filename = filename
+        self.load_tasks()
+
+    def load_tasks(self):
+        try:
+            with open(self.filename, "r") as file:
+                self.tasks = json.load(file)
+        except FileNotFoundError:
+            pass
+
+    def save_tasks(self):
+        with open(self.filename, "w") as file:
+            json.dump(self.tasks, file)
 
     def add_task(self, task):
         # 未実装：タスクをリストに追加する機能
+        self.save_tasks()
         pass
 
     def list_tasks(self):
@@ -15,6 +29,7 @@ class ToDoList:
 
     def remove_task(self, task_number):
         # 未実装：指定されたタスクをリストから削除する機能
+        self.save_tasks()
         pass
 
     def complete_task(self, task_number):
