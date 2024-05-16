@@ -11,7 +11,8 @@ class ToDoList:
 
     def list_tasks(self):
         # 未実装：リスト内のタスクを表示する機能
-        pass
+        for i in self.tasks:
+            print(self.tasks.index(i) + ': ' + i)
 
     def remove_task(self, task_number):
         # 未実装：指定されたタスクをリストから削除する機能
